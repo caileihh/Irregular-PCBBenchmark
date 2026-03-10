@@ -1,11 +1,11 @@
 # Irregular-PCB Benchmark
 
-This repository provides an **irregular printed circuit board (PCB) placement benchmark** for research on PCB layout optimization, routing feasibility prediction, and learning-based electronic design automation (EDA) methods.
+This repository provides an irregular printed circuit board (PCB) placement benchmark for research on PCB layout optimization.
 
-The benchmark contains PCB layouts with **irregular board boundaries, device geometries, pin shapes, and netlist connectivity**, which can be used to evaluate algorithms for placement, routing, routing prediction, and design optimization.
+The benchmark contains PCB layouts with irregular board boundaries, device geometries, pin shapes, and netlist connectivity, which can be used to evaluate algorithms for placement.
 
-Repository:  
-https://github.com/caileihh/Irregular-PCBBenchmark
+<!-- Repository:  
+https://github.com/caileihh/Irregular-PCBBenchmark -->
 
 ---
 
@@ -67,7 +67,7 @@ Each line corresponds to **one device**, represented by the vertex coordinates o
 Notes:
 
 - Coordinates represent the **device outline polygon**.
-- Most devices are rectangles, but the format supports **arbitrary polygons**.
+- Most devices are rectangles, and the format supports **arbitrary polygons**.
 - Devices are indexed according to the **line order**.
 
 ---
@@ -93,26 +93,22 @@ Notes:
 
 - Each inner list represents **one pin polygon**.
 - Pins are associated with devices according to **line index**.
-- Pin shapes are typically rectangles but support **general polygon shapes**.
 
 ---
 
 ## 4. netlist.txt
 
-Defines the **electrical connectivity between pins**.
+Defines the **net identifier associated with each pin of every device**.
 
-Each line represents **one net**:
-
-
-[pin_id_1, pin_id_2, pin_id_3, ...]
-
+Each line corresponds to **one device**, and each value represents the **net ID connected to the corresponding pin** defined in `pins.txt`.
 
 
 Notes:
 
-- Each integer corresponds to a **global pin index**.
-- `0` indicates **no connection / padding**.
-- A net connects all valid pin indices within the list.
+- Each integer represents a **net identifier** connected to the corresponding pin.
+- The order of values **matches the pin order in `pins.txt` for the same device**.
+- `0` denotes **GND (ground)**.
+- Pins connected to GND (`0`) are **excluded from the HPWL (Half-Perimeter Wirelength) computation**.
 
 ---
 
